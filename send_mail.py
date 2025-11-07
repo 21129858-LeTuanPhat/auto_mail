@@ -9,7 +9,7 @@ def send_email():
     receiver_email = os.getenv("EMAIL_TO")
 
     subject = "Thư tự động từ GitHub Actions"
-    body = "Xin chào!\nĐây là email được gửi tự động bằng Python qua GitHub Actions 🚀"
+    body = os.getenv("EMAIL_BODY")
 
     msg = MIMEMultipart()
     msg["From"] = sender_email
