@@ -1,0 +1,28 @@
+name: Send Mail Automatically
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # chạy mỗi ngày lúc 9h sáng UTC (16h VN)
+  workflow_dispatch:       # cho phép chạy thủ công
+
+jobs:
+  send-mail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run mail script
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python send_mail.py
