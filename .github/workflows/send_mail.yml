@@ -2,7 +2,7 @@ name: Send Mail Automatically
 
 on:
   schedule:
-    - cron: '0 9 * * *'   # chạy mỗi ngày lúc 9h sáng UTC (16h VN)
+    - cron: '0 2 * * *'   # chạy mỗi ngày lúc 9h sáng UTC (16h VN)
   workflow_dispatch:       # cho phép chạy thủ công
 
 jobs:
